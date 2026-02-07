@@ -3,9 +3,15 @@ import argparse
 from PyPDF2 import PdfReader, PdfWriter
 
 def split_pdf(input_path, output_dir):
+    # Check if input file exists
     if not os.path.exists(input_path):
-        print(f"Error: Input file '{input_path}' not found.")
-        return
+        # Fallback for common filename if default matches user request but file is different in repo
+        if input_path == "full_textbook.pdf" and os.path.exists("Genki_full_textbook 2.pdf"):
+            print(f"'{input_path}' not found. Using 'Genki_full_textbook 2.pdf' instead.")
+            input_path = "Genki_full_textbook 2.pdf"
+        else:
+            print(f"Error: Input file '{input_path}' not found.")
+            return
 
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -67,7 +73,7 @@ def split_pdf(input_path, output_dir):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Split Genki textbook PDF by lesson.")
-    parser.add_argument("-i", "--input", default="Genki_full_textbook 2.pdf", help="Path to input PDF file.")
+    parser.add_argument("-i", "--input", default="full_textbook.pdf", help="Path to input PDF file.")
     parser.add_argument("-o", "--output", default="output", help="Output directory.")
     args = parser.parse_args()
 
