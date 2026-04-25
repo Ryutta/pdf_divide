@@ -49,6 +49,14 @@ pip install -r requirements.txt
 ## ファイル構成
 
 - `original/`: 分割元のPDFファイルを置く場所
-- `output_chapters/`: 分割後のPDFが出力される場所
-- `split_chapters.py`: 分割を行うスクリプト（設定もここで行います）
+- `output_chapters/`: `split_chapters.py` によって分割されたPDFが出力される場所
+- `split_chapters.py`: 指定した章で分割を行う汎用スクリプト（設定もここで行います）
+- `split_pdf.py`: 「げんきI」のPDFを課別に分割するスクリプト
+- `split_genki2.py`: 「げんきII」のPDFを課別に分割するスクリプト
 - `requirements.txt`: 必要なライブラリの一覧
+
+## その他のツール
+- **split_pdf.py**: 「げんきI」の教科書(`Genki_full_textbook 2.pdf`)を前書き、あいさつ、各課(Lesson 1〜12)、読み書き編に分割します。
+  実行方法: `python split_pdf.py -i <入力PDF> -o <出力フォルダ>`
+- **split_genki2.py**: 「げんきII」の教科書(`Genki_Textbook_II_3rd_Edition 2.pdf`)を前書き、各課(Lesson 13〜23)、読み書き編に分割します。
+  実行方法: `python split_genki2.py -i <入力PDF> -o <出力フォルダ>`
